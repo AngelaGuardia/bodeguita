@@ -1,7 +1,7 @@
 class Image < ApplicationRecord
-  validates_presence_of :name, :description, :price, :url, :inventory
-  validates_numericality_of :inventory, greater_than: 0
-  validates_numericality_of :price, greater_than: 0
+  validates :name, :description, :price, :url, :inventory, presence: true
+  validates :inventory, numericality: { greater_than: 0 }
+  validates :price, numericality: { greater_than: 0 }
 
   belongs_to :user
 end
