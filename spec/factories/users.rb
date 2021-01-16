@@ -15,5 +15,11 @@ FactoryBot.define do
     factory :photographer do
       role { 1 }
     end
+
+    trait :with_images do
+      after(:create) do |user|
+        create_list(:image, 5, user: user)
+      end
+    end
   end
 end
