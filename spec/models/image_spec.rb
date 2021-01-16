@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Image, type: :model do
   describe 'Relationships' do
     it { should belong_to :user }
+    it { should have_many :order_images }
+    it { should have_many(:orders).through(:order_images) }
+
   end
 
   describe 'Validations' do
