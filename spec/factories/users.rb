@@ -6,7 +6,7 @@ FactoryBot.define do
     city { Faker::Address.city }
     state { Faker::Address.state_abbr }
     zip { Faker::Address.zip }
-    email { Faker::Internet.free_email(name: name) }
+    email { Faker::Internet.free_email }
 
     factory :buyer do
       role { 0 }
