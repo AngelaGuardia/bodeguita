@@ -1,13 +1,14 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :revenue, Float, null: true, description: 'Returns revenue per photographer' do
+      argument :user_id, ID, required: true
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-                               description: 'An example field added by the generator'
-    def test_field
-      'Hello World!'
+    def revenue(user_id:)
+      photographer = User.find(user_id.to_i)
+      photographer
+      .order_images
+      .sum('order_images.price * order_images.quantity')
     end
   end
 end
