@@ -13,12 +13,13 @@ class Mutations::Orders::CreateOrder < Mutations::BaseMutation
 
   def resolve(attributes)
     cart = eval(attributes.delete(:cart))
-    order = Order.create(attributes)
-    cart.each do |image_id, quantity|
-      image = Image.find(image_id)
-      OrderImage.create(order: order, image: image, price: image.price, quantity: quantity)
-      image.update(inventory: image.inventory - quantity)
+    order = Order.new(attributes)
+    if order.fulfillable?(cart)
+      order.fulfill(cart)
+      order.save
+      order
+    else
+      raise GraphQL::ExecutionError, "Error: insufficient inventory"
     end
-    order
   end
 end
