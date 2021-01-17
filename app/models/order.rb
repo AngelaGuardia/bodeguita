@@ -19,4 +19,8 @@ class Order < ApplicationRecord
       image.update(inventory: image.inventory - quantity)
     end
   end
+
+  def grand_total
+    order_images.sum { |order_image| order_image.price * order_image.quantity}
+  end
 end
