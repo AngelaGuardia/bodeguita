@@ -19,7 +19,7 @@ class Mutations::Orders::CreateOrder < Mutations::BaseMutation
       order.save
       order
     else
-      raise GraphQL::ExecutionError, "Error: insufficient inventory"
+      raise GraphQL::ExecutionError, 'Error: insufficient inventory'
     end
   end
 end
