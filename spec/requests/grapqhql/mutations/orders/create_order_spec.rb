@@ -46,6 +46,15 @@ RSpec.describe Mutations::Orders::CreateOrder, type: :request do
       expect(@image3.reload.inventory).to eq(initial_inventory_i3 - 1)
     end
 
+    it 'does not create orders if insufficient inventoty' do
+      @cart = { @image1.id => @image1.inventory + 1 }
+
+      post graphql_path, params: { query: query(@cart) }
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result[:errors].first[:message]).to eq("Error: insufficient inventory")
+    end
+
     def query(cart)
       <<~GQL
         mutation {
