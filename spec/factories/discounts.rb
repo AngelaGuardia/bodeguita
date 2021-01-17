@@ -3,6 +3,6 @@ FactoryBot.define do
     name { Faker::Hipster.word }
     percentage { Faker::Number.between(from: 0.0, to: 1.0) }
     minimum_quantity { Faker::Number.number(digits: 1) }
-    user { association :user }
+    association :user
   end
 end
