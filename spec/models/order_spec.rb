@@ -50,5 +50,12 @@ RSpec.describe Order, type: :model do
       expect(OrderImage.first.quantity).to eq(1)
       expect(OrderImage.first.price).to eq(@image1.price)
     end
+
+    it 'calculates the grand_total' do
+      cart = { @image1.id => 1, @image2.id => 1, @image3.id => 1 }
+      @order.fulfill(cart)
+      price = cart.sum { |id, qty| Image.find(id).price * qty }
+      expect(@order.grand_total).to eq(price)
+    end
   end
 end

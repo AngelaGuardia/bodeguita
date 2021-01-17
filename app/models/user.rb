@@ -4,5 +4,6 @@ class User < ApplicationRecord
 
   has_many :images, dependent: :destroy
   has_many :order_images, through: :images, dependent: :destroy
+  has_many :discounts
   enum role: { 'buyer' => 0, 'photographer' => 1 }
 end

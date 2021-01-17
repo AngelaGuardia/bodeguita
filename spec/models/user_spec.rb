@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'Relationships' do
     it { should have_many :images }
+    it { should have_many(:order_images).through(:images) }
+    it { should have_many :discounts }
   end
 
   describe 'Validations' do
