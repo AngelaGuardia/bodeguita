@@ -4,4 +4,19 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_images, dependent: :destroy
   has_many :images, through: :order_images, dependent: :destroy
+
+  def fulfillable?(cart)
+    cart.each do |image_id, quantity|
+      image = Image.find(image_id)
+      return false if image.inventory < quantity
+    end
+  end
+
+  def fulfill(cart)
+    cart.each do |image_id, quantity|
+      image = Image.find(image_id)
+      OrderImage.create(order: self, image: image, price: image.price, quantity: quantity)
+      image.update(inventory: image.inventory - quantity)
+    end
+  end
 end
