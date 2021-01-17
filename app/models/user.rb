@@ -3,5 +3,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   has_many :images, dependent: :destroy
+  has_many :order_images, through: :images, dependent: :destroy
   enum role: { 'buyer' => 0, 'photographer' => 1 }
 end
