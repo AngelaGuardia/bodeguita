@@ -15,12 +15,12 @@ class Order < ApplicationRecord
   def fulfill(cart)
     cart.each do |image_id, quantity|
       image = Image.find(image_id)
-      OrderImage.create(order: self, image: image, price: image.price, quantity: quantity)
+      OrderImage.create(order: self, image: image, price: image.discounted_price(quantity), quantity: quantity)
       image.update(inventory: image.inventory - quantity)
     end
   end
 
   def grand_total
-    order_images.sum { |order_image| order_image.price * order_image.quantity}
+    order_images.sum { |order_image| order_image.price * order_image.quantity }
   end
 end
