@@ -7,8 +7,8 @@ module Types
     def revenue(user_id:)
       photographer = User.find(user_id.to_i)
       photographer
-      .order_images
-      .sum('order_images.price * order_images.quantity')
+        .order_images
+        .sum('order_images.price * order_images.quantity')
     end
   end
 end
