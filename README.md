@@ -1,5 +1,5 @@
 # Bodeguita
-![rails-badge](https://img.shields.io/badge/Rails-6.1.0-informational?style=flat-square) ![ruby-badge](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat-square) ![closed-pr-badge](https://img.shields.io/github/issues-pr-closed-raw/AngelaGuardia/bodeguita/api?style=flat-square)
+![rails-badge](https://img.shields.io/badge/Rails-6.1.0-informational?style=flat-square) ![ruby-badge](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat-square) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AngelaGuardia/bodeguita)
 
 
 This GraphQL on Rails API serves queries and mutations to Bodeguita, an application that allows users to buy and sell images.
@@ -18,7 +18,6 @@ Likewise, image buyers can purchase images by
 - [GraphQL Schema](#graphql-schema)
 - [Database Schema](#database-schema)
 - [Project Board](#project-board)
-- [Contributors](#contributors)
 
 ## Local Setup
 - Versions
@@ -121,11 +120,17 @@ Likewise, image buyers can purchase images by
 
 ## Database Schema
 <img width="1270" alt="Screen Shot 2021-01-17 at 4 28 14 PM" src="https://user-images.githubusercontent.com/47278429/104860714-53198780-58e1-11eb-8b74-8d68f9308323.png">
+
 - Description of tables:
+
   - Users: holds all user information. Users have a role - buyer or photographer
+  
   - Images: holds all image info including full price and inventory
+  
   - Discounts: holds all discount information related to a photographer
+  
   - Orders: hold all purchase information
+  
   - OrderImages: joins images and orders, holds the final price and quantity purchased for each image
 
 ## Project Board
